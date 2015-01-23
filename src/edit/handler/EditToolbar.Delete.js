@@ -44,7 +44,8 @@ L.EditToolbar.Delete = L.Handler.extend({
 			.off('layerremove', this._disableLayerDelete, this);
 
 		L.Handler.prototype.disable.call(this);
-
+		
+		this._map.fire('draw:cancel', { handler: this.type });
 		this._map.fire('draw:deletestop', { handler: this.type });
 
 		this.fire('disabled', { handler: this.type});
